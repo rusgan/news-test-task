@@ -110,7 +110,7 @@ class BaseScreen:
     def wait_until_stale(self, element):
 
         wait = WebDriverWait(self.driver, 10)
-        wait.until_not(EC.staleness_of(element))
+        wait.until(EC.staleness_of(element))
 
     def scroll_down(self):
         actions = TouchAction(self.driver)
