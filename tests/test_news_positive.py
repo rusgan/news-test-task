@@ -1,11 +1,11 @@
-from time import sleep
-
 import pytest
 
 from screens.main import Main
 
 
 def assert_articles(article, refreshed):
+    print('first: ' + article.description.text)
+    print('second: ' + refreshed.description.text)
     assert article.title.text == refreshed.title.text
     assert article.description.text == refreshed.description.text
     assert article.image.screenshot_as_base64 == refreshed.image.screenshot_as_base64
@@ -37,13 +37,13 @@ class TestSomething:
         articles = main.get_articles()
         words = ' '.join(articles[0].title.text.split()[:3])
         main.filter(words)
-        # main.wait_until_stale(articles[0].element)
-        sleep(5)  # avoid with WebDriverWait
+        main.wait_until_stale(articles[-1].element)
         filtered_articles = main.get_articles()
         assert len(filtered_articles) == 1
         assert_articles(articles[0], filtered_articles[0])
 
     @pytest.mark.positive
+    @pytest.mark.article_size
     def test_article_size(self, driver_setup):
         driver = driver_setup
         main = Main(driver)
