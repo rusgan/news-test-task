@@ -1,9 +1,10 @@
 TestCases
 
+
 List of new positive:
 
 List of new negative:
-	Incorrect shema
+	Incorrect schema
 	Empty
 	Other status codes
 
@@ -20,7 +21,7 @@ SearchPositive:
 
 SearchNegative:
 	Empty
-	incoorect value
+	incorrect value
 	injections
 
 
@@ -29,9 +30,9 @@ NewsPositive:
 
 NewsNegative:
 	Empty fields
-	Unesessery fields
+	Unnecessary fields
 	Incorrect types
-	incorrect shema
+	incorrect schema
 
 Cashing:
 
@@ -59,7 +60,8 @@ Bugs
 search send another request instead of filtering
 Title of news replaces randomly
 Search field not static
-№ cannot be intered
+№ cannot be entered
+buffer overflow
 
 
 

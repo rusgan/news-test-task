@@ -1,6 +1,6 @@
 from time import sleep
 
-from selenium.common.exceptions import NoSuchElementException, WebDriverException
+from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -110,7 +110,7 @@ class BaseScreen:
     def wait_until_stale(self, element):
 
         wait = WebDriverWait(self.driver, 10)
-        return wait.until(EC.staleness_of(element))
+        wait.until_not(EC.staleness_of(element))
 
     def scroll_down(self):
         actions = TouchAction(self.driver)

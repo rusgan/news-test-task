@@ -12,7 +12,8 @@ def driver_setup(request):
     capabilities = {
         'platformName': 'Android',
         'deviceName': 'pixel3',
-        'app': PATH('app/news.apk')
+        'app': PATH('app/news.apk'),
+        'avd': 'pixel3'
     }
     url = 'http://localhost:4723/wd/hub'
     driver = webdriver.Remote(url, capabilities)

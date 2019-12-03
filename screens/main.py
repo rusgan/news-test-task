@@ -19,7 +19,7 @@ class Main(BaseScreen):
         articles = []
         for element in elements:
             article = Article()
-            article.title = element.find_element_by_id(self.title_id).text
+            article.title = element.find_element_by_id(self.title_id)
             article.image = element.find_element_by_id(self.image_id).screenshot_as_base64
             article.description = element.find_element_by_id(self.description_id).text
             article.element = element
