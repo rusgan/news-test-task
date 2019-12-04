@@ -4,22 +4,22 @@ from screens.main import Main
 
 
 def assert_articles(article, refreshed):
-    print('first: ' + article.description.text)
-    print('second: ' + refreshed.description.text)
     assert article.title.text == refreshed.title.text
     assert article.description.text == refreshed.description.text
     assert article.image.screenshot_as_base64 == refreshed.image.screenshot_as_base64
 
 
-TITLE_HEIGHT = 2
+TITLE_HEIGHT = 99
+IMAGE_HEIGHT = 275
+DESCRIPTION_HEIGHT = 77
 
 
-class TestSomething:
+class TestNews:
     @pytest.mark.cash
     @pytest.mark.positive
-    def test_cashing(self, driver_setup):
-        driver = driver_setup
-        main = Main(driver)
+    @pytest.mark.xfail(reason='Articles deleting after force stop')
+    def test_cashing(self):
+        main = Main(self.driver)
         articles = main.get_articles()
         main.toggle_wifi()
         main.close_app()
@@ -30,10 +30,9 @@ class TestSomething:
 
     @pytest.mark.filter
     @pytest.mark.positive
-    @pytest.mark.xfail(reason='Problems with WebDriverWait')
-    def test_filter(self, driver_setup):
-        driver = driver_setup
-        main = Main(driver)
+    @pytest.mark.xfail(reason='Work like search instead of filtering. Also need inject mocks to control backend part')
+    def test_filter(self):
+        main = Main(self.driver)
         articles = main.get_articles()
         words = ' '.join(articles[0].title.text.split()[:3])
         main.filter(words)
@@ -44,11 +43,10 @@ class TestSomething:
 
     @pytest.mark.positive
     @pytest.mark.article_size
-    def test_article_size(self, driver_setup):
-        driver = driver_setup
-        main = Main(driver)
+    def test_article_size(self):
+        main = Main(self.driver)
         articles = main.get_articles()
         for article in articles:
             assert article.title.size['height'] == TITLE_HEIGHT
-            assert article.image.size['height'] == 2
-            assert article.description.size['height'] == 2
+            assert article.image.size['height'] == IMAGE_HEIGHT
+            assert article.description.size['height'] == DESCRIPTION_HEIGHT

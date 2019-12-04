@@ -96,6 +96,9 @@ class BaseScreen:
     def toggle_wifi(self):
         self.driver.toggle_wifi()
 
+    def get_connections(self):
+        return self.driver.network_connection
+
     def close_app(self):
         self.driver.close_app()
 
