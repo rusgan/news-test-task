@@ -4,9 +4,9 @@ from screens.main import Main
 
 
 def assert_articles(article, refreshed):
-    assert article.title.text == refreshed.title.text
-    assert article.description.text == refreshed.description.text
-    assert article.image.screenshot_as_base64 == refreshed.image.screenshot_as_base64
+    assert article.title == refreshed.title
+    assert article.description == refreshed.description
+    assert article.image == refreshed.image
 
 
 TITLE_HEIGHT = 99
@@ -15,26 +15,25 @@ DESCRIPTION_HEIGHT = 77
 
 
 class TestNews:
-    @pytest.mark.cash
+    @pytest.mark.cache
     @pytest.mark.positive
-    @pytest.mark.xfail(reason='Articles deleting after force stop')
-    def test_cashing(self):
-        main = Main(self.driver)
+    def test_caching(self):
+        main = Main(pytest.driver)
         articles = main.get_articles()
         main.toggle_wifi()
-        main.close_app()
-        main.launch_app()
+        main.start_main_activity()
         offline = main.get_articles()
         for index, item in enumerate(articles):
             assert_articles(articles[index], offline[index])
 
     @pytest.mark.filter
     @pytest.mark.positive
-    @pytest.mark.xfail(reason='Work like search instead of filtering. Also need inject mocks to control backend part')
+    @pytest.mark.xfail(reason='Work like search instead of filtering. Also need inject mocks or db to control backend '
+                              'part')
     def test_filter(self):
-        main = Main(self.driver)
+        main = Main(pytest.driver)
         articles = main.get_articles()
-        words = ' '.join(articles[0].title.text.split()[:3])
+        words = ' '.join(articles[0].title.split()[:3])
         main.filter(words)
         main.wait_until_stale(articles[-1].element)
         filtered_articles = main.get_articles()
@@ -44,9 +43,9 @@ class TestNews:
     @pytest.mark.positive
     @pytest.mark.article_size
     def test_article_size(self):
-        main = Main(self.driver)
-        articles = main.get_articles()
-        for article in articles:
+        main = Main(pytest.driver)
+        articles_elements = main.get_article_elements()
+        for article in articles_elements:
             assert article.title.size['height'] == TITLE_HEIGHT
             assert article.image.size['height'] == IMAGE_HEIGHT
             assert article.description.size['height'] == DESCRIPTION_HEIGHT

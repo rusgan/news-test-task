@@ -24,14 +24,8 @@ def driver_setup(request):
     url = 'http://localhost:4723/wd/hub'
     driver = webdriver.Remote(url, capabilities)
     pytest.driver = driver
-
-    seen = {None}
-    session = request.node
-    for item in session.items:
-        cls = item.getparent(pytest.Class)
-        if cls not in seen:
-            cls.obj.driver = driver
-            seen.add(cls)
+    if driver.network_connection == 0:
+        driver.toggle_wifi()
 
     def auto_session_resource_teardown():
         driver.quit()

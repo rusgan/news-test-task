@@ -1,5 +1,8 @@
 from screens.base_screen import BaseScreen
 
+PACKAGE = 'my.deler.newstestapplication'
+MAIN_ACTIVITY = PACKAGE + '.screens.MainActivity'
+
 
 class Main(BaseScreen):
     filter_locator = ('id', 'my.deler.newstestapplication:id/searchEdit')
@@ -19,6 +22,18 @@ class Main(BaseScreen):
         articles = []
         for element in elements:
             article = Article()
+            article.title = element.find_element_by_id(self.title_id).text
+            article.image = element.find_element_by_id(self.image_id).screenshot_as_base64
+            article.description = element.find_element_by_id(self.description_id).text
+            article.element = element
+            articles.append(article)
+        return articles
+
+    def get_article_elements(self):
+        elements = self.get_elements(self.article_locator)
+        articles = []
+        for element in elements:
+            article = Article()
             article.title = element.find_element_by_id(self.title_id)
             article.image = element.find_element_by_id(self.image_id)
             article.description = element.find_element_by_id(self.description_id)
@@ -26,11 +41,12 @@ class Main(BaseScreen):
             articles.append(article)
         return articles
 
+    def start_main_activity(self):
+        self.driver.start_activity(PACKAGE, MAIN_ACTIVITY)
+
 
 class Article:
     element = None
     title = None
     image = None
     description = None
-
-
