@@ -118,9 +118,8 @@ class BaseScreen:
     def scroll_down(self):
         actions = TouchAction(self.driver)
         window_size = self.driver.get_window_size()
-        half = window_size["height"] / 2
-        quarter = window_size["height"] / 4
-        actions.press(x=10, y=half).move_to(x=10, y=quarter).release().perform()
+        actions.press(x=10, y=window_size["height"] * 0.8).move_to(x=10, y=window_size["height"] * 0.2).release()\
+            .perform()
 
     def scroll_down_until_invisible(self, locator):
         while self.is_visible(locator):

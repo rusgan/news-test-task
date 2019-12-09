@@ -34,7 +34,7 @@ def driver_setup(request):
 
 
 @pytest.fixture(scope="function", autouse=True)
-def another_resource_setup_with_autouse(request):
+def load_main_screen(request):
     if pytest.driver.network_connection == 0:
         pytest.driver.toggle_wifi()
         sleep(5)
