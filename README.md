@@ -7,7 +7,9 @@ News test task
 для работы с Appium не столь удобна.
 
 1. [Appium](http://appium.io/) requires Node.js
+
     Установка
+
     ```shell
     npm install -g appium
     ```
@@ -18,6 +20,7 @@ News test task
     ```
 
 2. Для проверки конфигурации [appium-doctor](https://github.com/appium/appium-doctor)
+
     Установка
 
     ```shell
@@ -25,11 +28,13 @@ News test task
     ```
 
     Проверка компонент
+
     ```shell
     appium-doctor --android
     ```
 # Libraries
 Необходимые библиотеки находятся в requirements.txt
+
     ```shell
     pip install -r requirements.txt
     ```
