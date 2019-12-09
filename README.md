@@ -7,20 +7,24 @@ News test task
 для работы с Appium не столь удобна.
 
 1. [Appium](http://appium.io/) requires Node.js
-Установка
+    Установка
     ```shell
     npm install -g appium
     ```
-Запуск
+
+    Запуск
     ```shell
     appium
     ```
+
 2. Для проверки конфигурации [appium-doctor](https://github.com/appium/appium-doctor)
-Установка
+    Установка
+
     ```shell
     npm install appium-doctor -g
     ```
-Проверка компонент
+
+    Проверка компонент
     ```shell
     appium-doctor --android
     ```
