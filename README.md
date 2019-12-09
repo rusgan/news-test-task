@@ -34,10 +34,9 @@ News test task
     ```
 # Libraries
 Необходимые библиотеки находятся в requirements.txt
-
-    ```shell
-    pip install -r requirements.txt
-    ```
+```shell
+pip install -r requirements.txt
+```
 # Usage
  Настройки драйвера и capabilities вынесена в фикстуру driver_setup
 ```python
