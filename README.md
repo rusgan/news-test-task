@@ -34,6 +34,7 @@ News test task
     ```
 # Libraries
 Необходимые библиотеки находятся в requirements.txt
+
     ```shell
     pip install -r requirements.txt
     ```
@@ -52,9 +53,9 @@ def driver_setup(request):
     driver = webdriver.Remote(url, capabilities)
 ```
 Запуск по маркеру
-    ```shell
-    pytest -m "%marker_name%"
-    ```
+```shell
+pytest -m "%marker_name%"
+```
 # Cases
 Чек-листы находятся в файле /documents/checklists
 
