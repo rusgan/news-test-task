@@ -34,7 +34,6 @@ News test task
     ```
 # Libraries
 Необходимые библиотеки находятся в requirements.txt
-
     ```shell
     pip install -r requirements.txt
     ```
